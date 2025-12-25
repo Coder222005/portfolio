@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Coder222005 — Portfolio</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="brand">Coder222005</div>
+			<nav>
+				<button id="antigravityBtn" title="Toggle Antigravity">Antigravity</button>
+				<a href="#portfolio">Portfolio</a>
+				<a href="#blogs">Blogs</a>
+			</nav>
+		</header>
+
+		<main>
+			<section id="hero" class="hero">
+				<h1>Hi, I'm Coder222005</h1>
+				<p>Developer — building web apps and playful UIs.</p>
+			</section>
+
+			<section id="portfolio" class="panel">
+				<h2>Portfolio</h2>
+				<div class="cards">
+					<article class="card">
+						<h3>Sample Project</h3>
+						<p>Example project entry. Replace with your projects.</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="blogs" class="panel">
+				<div class="panel-head">
+					<h2>Blogs</h2>
+					<div class="actions">
+						<button id="newPostBtn">New Post</button>
+						<button id="downloadBtn">Download blogs.json</button>
+					</div>
+				</div>
+
+				<div id="blogList" class="blog-list">Loading blogs…</div>
+			</section>
+		</main>
+
+		<div id="editorModal" class="modal hidden">
+			<form id="postForm" class="editor">
+				<h3 id="formTitle">New Post</h3>
+				<label>Title<input name="title" required /></label>
+				<label>Date<input name="date" type="date" /></label>
+				<label>Tags (comma separated)<input name="tags" /></label>
+				<label>Content (HTML allowed)
+					<textarea name="content" rows="10" required></textarea>
+				</label>
+				<div class="editor-actions">
+					<button type="submit">Save</button>
+					<button type="button" id="cancelEdit">Cancel</button>
+				</div>
+			</form>
+		</div>
+
+		<footer class="site-footer">
+			<small>Made with curiosity · December 2025</small>
+		</footer>
+
+		<script src="app.js"></script>
+	</body>
+</html>

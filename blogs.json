@@ -1,0 +1,16 @@
+[
+  {
+    "id": "post-dns-001",
+    "title": "How DNS Really Works — A Practical Overview",
+    "date": "2025-12-01",
+    "tags": ["dns","networking","devops"],
+    "content": "<p>Domain Name System (DNS) is the phonebook of the internet. When you type a domain, DNS resolves a human-readable name to an IP address.</p>\n<p>Key components:</p>\n<ul>\n<li><strong>Resolvers</strong> — clients that query DNS.</li>\n<li><strong>Authoritative nameservers</strong> — hold the records for a zone.</li>\n<li><strong>Records</strong> — <code>A/AAAA</code> for IPs, <code>CNAME</code> for aliases, <code>MX</code> for mail, etc.</li>\n</ul>\n<p>Practical tips: keep TTLs reasonable for services that change IPs, use health-checked failover where appropriate, and secure zones with DNSSEC for authenticity.</p>"
+  },
+  {
+    "id": "post-bff-001",
+    "title": "Backend For Frontend (BFF): Patterns and When to Use It",
+    "date": "2025-12-10",
+    "tags": ["architecture","bff","backend"],
+    "content": "<p>The Backend For Frontend (BFF) pattern adds a small backend service tailored to the needs of a specific frontend (web, mobile). It helps by aggregating multiple APIs, shaping responses, and handling auth complexity.</p>\n<p>Benefits:</p>\n<ul>\n<li>Reduced client complexity — the BFF translates and composes data.</li>\n<li>Performance optimisations — returns only needed fields or combines calls.</li>\n<li>Separation of concerns — keeps frontend-specific logic server-side.</li>\n</ul>\n<p>When to use: when multiple frontends have divergent needs, or when you want to centralise frontend-specific security/aggregation logic.</p>"
+  }
+]
