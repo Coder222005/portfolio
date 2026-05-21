@@ -64,68 +64,9 @@ function renderBlogs(searchQuery = ''){
         ` : ''}
       </div>
       <div class="content">${post.content}</div>
-      <div class="post-actions">
-        <button data-id="${post.id}" class="editBtn btn btn-secondary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          Edit
-        </button>
-      </div>
     `
     list.appendChild(el)
   })
-  attachEditButtons()
-}
-
-function attachEditButtons(){
-  document.querySelectorAll('.editBtn').forEach(b=>b.onclick = e=>{
-    const id = e.currentTarget.dataset.id
-    openEditor(blogs.find(p=>p.id==id))
-  })
-}
-
-function openEditor(post){
-  const modal = $('#editorModal')
-  const form = $('#postForm')
-  
-  // Use native <dialog> API
-  modal.showModal()
-  
-  form.title.value = post?.title || ''
-  form.date.value = post?.date || new Date().toISOString().slice(0,10)
-  form.tags.value = (post?.tags||[]).join(', ')
-  form.content.value = post?.content || ''
-  $('#formTitle').textContent = post ? 'Edit Post' : 'New Post'
-  
-  form.onsubmit = e => {
-    e.preventDefault()
-    const data = {
-      id: post?.id || Date.now().toString(36),
-      title: form.title.value.trim(),
-      date: form.date.value,
-      tags: form.tags.value.split(',').map(s=>s.trim()).filter(Boolean),
-      content: form.content.value
-    }
-    if(post){
-      const idx = blogs.findIndex(p=>p.id==post.id); blogs[idx]=data
-    }else blogs.push(data)
-    localStorage.setItem('blogs_backup', JSON.stringify(blogs))
-    closeEditor()
-    const searchQuery = $('#blogSearchInput')?.value.trim().toLowerCase() || ''
-    renderBlogs(searchQuery)
-  }
-}
-
-function closeEditor(){
-  // Use native <dialog> API
-  $('#editorModal').close()
-}
-
-function downloadBlogs(){
-  const blob = new Blob([JSON.stringify(blogs, null, 2)],{type:'application/json'})
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url; a.download = 'blogs.json'
-  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url)
 }
 
 function escapeHtml(s){
@@ -190,26 +131,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
   loadBlogs()
   
   // Wire buttons
-  $('#newPostBtn').onclick = () => openEditor()
-  $('#cancelEdit').onclick = closeEditor
-  $('#downloadBtn').onclick = downloadBlogs
   $('#antigravityBtn').onclick = toggleAntigravity
   
   // Wire Live Search
   $('#blogSearchInput').oninput = e => {
     renderBlogs(e.target.value.trim().toLowerCase())
   }
-  
-  // Close dialog when clicking the backdrop overlay
-  $('#editorModal').addEventListener('click', e => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    if (e.target.tagName === 'DIALOG' && (
-      e.clientX < rect.left ||
-      e.clientX > rect.right ||
-      e.clientY < rect.top ||
-      e.clientY > rect.bottom
-    )) {
-      closeEditor()
-    }
-  })
 })

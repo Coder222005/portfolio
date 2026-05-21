@@ -125,16 +125,6 @@
 			<section id="blogs" class="panel">
 				<div class="panel-head">
 					<h2>Blogs</h2>
-					<div class="actions">
-						<button id="newPostBtn" class="btn btn-primary">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-							New Post
-						</button>
-						<button id="downloadBtn" class="btn btn-secondary">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-							Download blogs.json
-						</button>
-					</div>
 				</div>
 
 				<!-- Live Blog Search -->
@@ -148,38 +138,6 @@
 				<div id="blogList" class="blog-list">Loading blogs…</div>
 			</section>
 		</main>
-
-		<!-- Native Editor Modal -->
-		<dialog id="editorModal" class="modal">
-			<form id="postForm" class="editor">
-				<h3 id="formTitle">New Post</h3>
-				
-				<div class="editor-field">
-					<label for="postTitle">Title</label>
-					<input id="postTitle" name="title" required placeholder="How DNS Really Works..." />
-				</div>
-
-				<div class="editor-field">
-					<label for="postDate">Date</label>
-					<input id="postDate" name="date" type="date" />
-				</div>
-
-				<div class="editor-field">
-					<label for="postTags">Tags (comma separated)</label>
-					<input id="postTags" name="tags" placeholder="dns, networking, systems" />
-				</div>
-
-				<div class="editor-field">
-					<label for="postContent">Content (HTML allowed)</label>
-					<textarea id="postContent" name="content" rows="8" required placeholder="Write your post content here... HTML formatting is supported."></textarea>
-				</div>
-
-				<div class="editor-actions">
-					<button type="submit" class="btn btn-primary">Save</button>
-					<button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
-				</div>
-			</form>
-		</dialog>
 
 		<footer class="site-footer">
 			<small>Made with curiosity · Coder222005 · May 2026</small>

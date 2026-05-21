@@ -1,0 +1,33 @@
+name: Compile Blogs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'blogs/**'
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Compile Blogs
+        run: node compile.js
+
+      - name: Commit and Push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git diff --quiet blogs.json || (git add blogs.json && git commit -m "Auto-compile blogs.json [skip ci]" && git push)
